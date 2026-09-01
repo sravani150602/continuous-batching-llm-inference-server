@@ -1,6 +1,6 @@
 # Continuous-Batching LLM Inference Server
 
-[![CI](https://github.com/sravani150602/continuous-batching-llm/actions/workflows/ci.yml/badge.svg)](https://github.com/sravani150602/continuous-batching-llm/actions/workflows/ci.yml)
+[![CI](https://github.com/sravani150602/continuous-batching-llm-inference-server/actions/workflows/ci.yml/badge.svg)](https://github.com/sravani150602/continuous-batching-llm-inference-server/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 A production-oriented inference control plane demonstrating the systems behind modern LLM serving: iteration-level continuous batching, logical paged KV-cache allocation, priority preemption, prefix reuse, durable Kafka orchestration, Redis checkpoints, and token streaming.
