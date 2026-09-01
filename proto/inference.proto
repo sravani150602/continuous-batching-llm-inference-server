@@ -1,0 +1,27 @@
+syntax = "proto3";
+package inference.v1;
+
+service InferenceService {
+  rpc Generate(GenerateRequest) returns (stream GenerateResponse);
+  rpc Health(HealthRequest) returns (HealthResponse);
+}
+
+message GenerateRequest {
+  string request_id = 1;
+  string prompt = 2;
+  uint32 max_new_tokens = 3;
+  float temperature = 4;
+  uint32 priority = 5;
+}
+
+message GenerateResponse {
+  string request_id = 1;
+  string token = 2;
+  uint32 token_id = 3;
+  bool finished = 4;
+  uint64 sequence_number = 5;
+}
+
+message HealthRequest {}
+message HealthResponse { string status = 1; uint32 active_requests = 2; }
+
