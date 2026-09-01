@@ -3,6 +3,7 @@ import asyncio
 import json
 import statistics
 import time
+
 from llm_server.backend import DeterministicBackend
 from llm_server.config import ServerConfig
 from llm_server.engine import ContinuousBatchingEngine
@@ -49,5 +50,11 @@ if __name__ == "__main__":
     parser.add_argument("--output-tokens", type=int, default=32)
     parser.add_argument("--step-delay-ms", type=float, default=2)
     args = parser.parse_args()
-    print(json.dumps(asyncio.run(run(args.concurrency, args.requests, args.output_tokens, args.step_delay_ms)), indent=2))
-
+    print(
+        json.dumps(
+            asyncio.run(
+                run(args.concurrency, args.requests, args.output_tokens, args.step_delay_ms)
+            ),
+            indent=2,
+        )
+    )
