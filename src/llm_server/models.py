@@ -1,7 +1,7 @@
-from dataclasses import dataclass, field
-from enum import Enum, auto
 import asyncio
 import time
+from dataclasses import dataclass, field
+from enum import Enum, auto
 
 
 class RequestState(Enum):
@@ -34,4 +34,3 @@ class GenerationRequest:
     @property
     def finished(self) -> bool:
         return len(self.generated_token_ids) >= self.max_new_tokens
-
