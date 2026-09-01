@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "continuous-batching-llm"
+version = "0.1.0"
+description = "Production-oriented continuous-batching LLM inference server"
+requires-python = ">=3.10"
+dependencies = ["grpcio>=1.62", "protobuf>=4.25", "redis>=5", "aiokafka>=0.10", "prometheus-client>=0.20"]
+
+[project.optional-dependencies]
+model = ["torch>=2.2", "transformers>=4.40"]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "ruff>=0.4"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+
