@@ -3,5 +3,4 @@
 from .config import ServerConfig
 from .engine import ContinuousBatchingEngine
 
-__all__ = ["ServerConfig", "ContinuousBatchingEngine"]
-
+__all__ = ["ContinuousBatchingEngine", "ServerConfig"]
