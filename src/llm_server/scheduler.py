@@ -1,5 +1,6 @@
 import heapq
 import itertools
+
 from .models import GenerationRequest
 
 
@@ -29,4 +30,3 @@ class PriorityScheduler:
     @property
     def waiting_count(self) -> int:
         return len(self._waiting)
-
