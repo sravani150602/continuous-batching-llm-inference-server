@@ -1,4 +1,5 @@
 import pytest
+
 from llm_server.kv_cache import OutOfPages, PagedKVCache
 
 
@@ -21,4 +22,3 @@ def test_longest_prefix():
     cache.remember_prefix([1, 2], [0])
     cache.remember_prefix([1, 2, 3], [1])
     assert cache.longest_prefix([1, 2, 3, 4]).token_ids == (1, 2, 3)
-
