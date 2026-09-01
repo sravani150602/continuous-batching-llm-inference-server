@@ -1,7 +1,7 @@
-from collections import OrderedDict
-from dataclasses import dataclass
 import hashlib
 import math
+from collections import OrderedDict
+from dataclasses import dataclass
 
 
 class OutOfPages(RuntimeError):
@@ -64,8 +64,10 @@ class PagedKVCache:
     def longest_prefix(self, tokens: list[int]) -> PrefixEntry | None:
         best = None
         for entry in self._prefixes.values():
-            if len(entry.token_ids) <= len(tokens) and tuple(tokens[: len(entry.token_ids)]) == entry.token_ids:
-                if best is None or len(entry.token_ids) > len(best.token_ids):
-                    best = entry
+            if (
+                len(entry.token_ids) <= len(tokens)
+                and tuple(tokens[: len(entry.token_ids)]) == entry.token_ids
+                and (best is None or len(entry.token_ids) > len(best.token_ids))
+            ):
+                best = entry
         return best
-
