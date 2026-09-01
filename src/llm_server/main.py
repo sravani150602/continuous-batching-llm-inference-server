@@ -1,6 +1,7 @@
 import argparse
 import asyncio
 import uuid
+
 from .backend import DeterministicBackend, TorchBackend
 from .config import ServerConfig
 from .engine import ContinuousBatchingEngine
@@ -8,7 +9,11 @@ from .models import GenerationRequest
 
 
 async def demo(args) -> None:
-    backend = TorchBackend(args.model, args.device) if args.backend == "torch" else DeterministicBackend(2)
+    backend = (
+        TorchBackend(args.model, args.device)
+        if args.backend == "torch"
+        else DeterministicBackend(2)
+    )
     engine = ContinuousBatchingEngine(ServerConfig.from_env(), backend)
     await engine.start()
 
@@ -35,4 +40,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
