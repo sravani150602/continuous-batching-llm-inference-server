@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.20)
+project(continuous_batching_llm LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+add_library(batch_scheduler cpp/src/batch_scheduler.cpp)
+target_include_directories(batch_scheduler PUBLIC cpp/include)
+target_compile_options(batch_scheduler PRIVATE -Wall -Wextra -Wpedantic)
+enable_testing()
+add_executable(scheduler_test cpp/tests/scheduler_test.cpp)
+target_link_libraries(scheduler_test PRIVATE batch_scheduler)
+add_test(NAME scheduler_test COMMAND scheduler_test)
+
