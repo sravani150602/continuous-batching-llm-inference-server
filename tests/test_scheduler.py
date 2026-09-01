@@ -10,4 +10,3 @@ def test_priority_and_batch_limit():
     scheduler.enqueue(high)
     batch = scheduler.form_batch([])
     assert [request.request_id for request in batch] == ["high", "low"]
-
