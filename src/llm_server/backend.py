@@ -1,5 +1,5 @@
-from abc import ABC, abstractmethod
 import asyncio
+from abc import ABC, abstractmethod
 
 
 class ModelBackend(ABC):
@@ -60,4 +60,3 @@ class TorchBackend(ModelBackend):
                 attention_mask=torch.tensor(mask, device=self.device),
             ).logits[:, -1]
         return logits.argmax(-1).cpu().tolist()
-
