@@ -1,4 +1,5 @@
 import asyncio
+
 from llm_server.backend import DeterministicBackend
 from llm_server.config import ServerConfig
 from llm_server.engine import ContinuousBatchingEngine
@@ -20,4 +21,3 @@ async def test_concurrent_streaming_requests_finish():
     assert all(len(tokens) == 5 for _, tokens in results)
     assert all(request.state is RequestState.FINISHED for request, _ in results)
     assert engine.cache.free_pages == config.kv_pages
-
