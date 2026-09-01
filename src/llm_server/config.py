@@ -1,5 +1,5 @@
-from dataclasses import dataclass
 import os
+from dataclasses import dataclass
 
 
 @dataclass(frozen=True, slots=True)
@@ -31,4 +31,3 @@ class ServerConfig:
             redis_url=os.getenv("REDIS_URL", "redis://localhost:6379/0"),
             kafka_bootstrap_servers=os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"),
         )
-
