@@ -16,4 +16,3 @@ class KafkaOrchestrator:
     async def publish_event(self, request_id: str, event: str, **metadata) -> None:
         body = json.dumps({"request_id": request_id, "event": event, **metadata}).encode()
         await self.producer.send_and_wait(self.event_topic, body, key=request_id.encode())
-
