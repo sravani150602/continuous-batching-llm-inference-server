@@ -1,8 +1,9 @@
 import asyncio
 from collections.abc import AsyncIterator
-from .backend import ModelBackend, DeterministicBackend
+
+from .backend import DeterministicBackend, ModelBackend
 from .config import ServerConfig
-from .kv_cache import PagedKVCache, OutOfPages
+from .kv_cache import OutOfPages, PagedKVCache
 from .models import GenerationRequest, RequestState
 from .scheduler import PriorityScheduler
 
@@ -33,7 +34,9 @@ class ContinuousBatchingEngine:
         if request.request_id in self.requests:
             raise ValueError(f"duplicate request id: {request.request_id}")
         request.prompt_token_ids = self.backend.encode(request.prompt)
-        self.cache.ensure_capacity(request.request_id, request.kv_pages, len(request.prompt_token_ids))
+        self.cache.ensure_capacity(
+            request.request_id, request.kv_pages, len(request.prompt_token_ids)
+        )
         self.requests[request.request_id] = request
         self.scheduler.enqueue(request)
         while True:
@@ -82,4 +85,3 @@ class ContinuousBatchingEngine:
                 else:
                     survivors.append(request)
             self.running = survivors
-
